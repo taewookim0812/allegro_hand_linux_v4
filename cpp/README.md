@@ -59,21 +59,21 @@ We use an **out-of-source** build style to keep source files clean.
 
    - Use Keyboard Commands to Control the Hand
 
-    | Command | Action |
-    |---------|--------|
-    | `H` | Home Position (PD control) |
-    | `R` | Ready Position (used before grasping) |
-    | `G` | Three-Finger Grasp |
-    | `K` | Four-Finger Grasp |
-    | `P` | Two-finger pinch (index-thumb) |
-    | `M` | Two-finger pinch (middle-thumb) |
-    | `E` | Envelop Grasp (all fingers) |
-    | `A` | Gravity Compensation |
-    | `F` | Turn Servos OFF (any grasp command turns them back on) |
-    | `1` | Rock Motion (from `RockScissorsPaper.cpp`) |
-    | `2` | Scissors Motion (from `RockScissorsPaper.cpp`) |
-    | `3` | Paper Motion (from `RockScissorsPaper.cpp`) |
-    | `Q` | Quit program |
+     | Command | Action |
+     |---------|--------|
+     | `H` | Home Position (PD control) |
+     | `R` | Ready Position (used before grasping) |
+     | `G` | Three-Finger Grasp |
+     | `K` | Four-Finger Grasp |
+     | `P` | Two-finger pinch (index-thumb) |
+     | `M` | Two-finger pinch (middle-thumb) |
+     | `E` | Envelop Grasp (all fingers) |
+     | `A` | Gravity Compensation |
+     | `F` | Turn Servos OFF (any grasp command turns them back on) |
+     | `1` | Rock Motion (from `RockScissorsPaper.cpp`) |
+     | `2` | Scissors Motion (from `RockScissorsPaper.cpp`) |
+     | `3` | Paper Motion (from `RockScissorsPaper.cpp`) |
+     | `Q` | Quit program |
 
 ---
 
