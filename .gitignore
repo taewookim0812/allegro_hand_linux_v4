@@ -231,4 +231,8 @@ cython_debug/
 .vscode/
 
 # libBHand
-!/libBHand/
+!libBHand/
+!libBHand/libBHand_64
+!libBHand/libBHand_64/lib
+!libBHand/libBHand_32
+!libBHand/libBHand_32/lib
