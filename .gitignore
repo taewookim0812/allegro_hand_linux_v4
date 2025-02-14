@@ -2,7 +2,7 @@ devel/
 logs/
 build/
 bin/
-lib/
+# lib/
 msg_gen/
 srv_gen/
 msg/*Action.msg
@@ -229,3 +229,6 @@ cython_debug/
 
 # Editor
 .vscode/
+
+# libBHand
+!/libBHand/
