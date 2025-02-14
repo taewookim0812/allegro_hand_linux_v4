@@ -168,12 +168,8 @@ private:
 	void SolveFKLeft();
 	void SolveFKRight();
 	void CalculateJacobian();
-	//void CalculateJacobianLeft();
-	//void CalculateJacobianRight();
 	void CalculateGravity();
 	void CalculateGravityEx();
-	//void CalculateGravityLeft();
-	//void CalculateGravityRight();
 
 	void Motion_HomePosition();
 	void Motion_Ready();
