@@ -11,23 +11,34 @@ There are [ROS1 API](./ros_source/) and [C++ API](./cpp/) for [Allegro Hand V4](
 
 In this section, we will introduce how to setup PC setting and PCAN driver which is for connecting Allegro Hand V4 and PC.
 
-1. **Install Ubuntu 20.04 and ROS1 Noetic**
-   Follow the official [ROS Noetic installation guide](https://wiki.ros.org/noetic/Installation/Ubuntu).
+1. **Install Ubuntu 20.04**
+  - **Download Ubuntu 20.04 LTS:**
+    - Get the ISO from the [official Ubuntu website](https://ubuntu.com/download/desktop).
+  - **Create a Bootable USB Drive:**
+    - Use tools like [Rufus](https://rufus.ie/) (Windows) or [Etcher](https://www.balena.io/etcher/) (macOS/Linux) to write the ISO to a USB drive.
+  - **Install Ubuntu:**
+    - Boot your PC from the USB drive.
+    - Follow the on-screen instructions to install Ubuntu (select language, keyboard layout, disk setup, and user information).
+    - Reboot your system after installation.
 
-2. **Install the Grasping Library (`libBHand`)**
+2. **Install the Grasping Library `libBHand`**
 
-- **Download `libBHand`**
-  - Get the `libBHand` from the [Grasping Library for Linux](https://www.allegrohand.com/ah-v4-grasping-library-for-linux)
-  - Download either `LibBHand_64.zip` or `LibBHand_32.zip` (depending on your system architecture).
-    - To check your system architecture: `getconf LONG_BIT`
+  - Check your system architecture. Run the following command to determine whether you need the 32-bit or 64-bit version: `getconf LONG_BIT`
+  - Go to `libBHand/libBHand_{32|64}` directory and Install `libBHand`
+    ```bash
+    cd libBHand/libBHand_{32|64}
+    sudo make install
+    sudo ldconfig
+    ```
 
-- **Extract and Install `libBHand`**
-  ```bash
-  unzip LibBHand_{32|64}.zip
-  cd libBHand_{32|64}
-  sudo make install
-  sudo ldconfig
-  ```
+  - If you need to **Uninstall** `libBHand`, navigate to the `libBHand_{32|64}` directory and run:
+    ```bash
+    sudo make uninstall
+    sudo ldconfig
+    ```
+
+  - The library source can be also downloaded from the [Grasping Library for Linux](https://www.allegrohand.com/ah-v4-grasping-library-for-linux). Click the button to download, and then locate the `LibBHand_32.zip` or `LibBHand_64.zip` file (found in the `/Allegro Hand V4 | File` folder). Unzip the source file and install it according to the instructions above.
+
 
 3. **Install the PCAN driver**
   > Before using the hand, you must install the **PCAN drivers**. These instructions assume you are using a **Peak Systems PCAN-USB adapter**.
@@ -104,6 +115,15 @@ We offer a ROS1 API to control the Allegro Hand V4 using **ROS1 Noetic** on **Ub
 We’ve provided step-by-step instructions for running the motion demo for the Allegro Hand V4 using the **C++ API**—which operates independently of ROS. For additional details about the C++ API, please see 📃[cpp/README.md](./cpp/README.md).
 
 
+# User Manual
+
+- For more information about Allegro Hand V4, see [User Manual 1.1](./asset/Allegro%20Hand%20V4_Users%20Manual_1.1.pdf).
+- Note: The wiki page at wiki.wonikrobotics.com/AllegroHandWiki is **no longer available!**
+- In the "Using Allegro Hand Sample Program" section, the source code has been replaced with the following GitHub repositories:
+  - **Linux System:** [allegro_hand_linux_v4](https://github.com/Wonikrobotics-git/allegro_hand_linux_v4)
+  - **Windows System:** [allegro_hand_windows_v4](https://github.com/Wonikrobotics-git/allegro_hand_windows_v4)
+
+
 # Discussion & Issues
 
 If you encounter any issues or would like to discuss improvements, you can use the following channels:
@@ -125,3 +145,4 @@ We sincerely appreciate the contributions that have helped improve this reposito
 - **New torque controller** by [@nisommer](https://github.com/nisommer)
 
 Thank you for your valuable contributions! 🙌
+

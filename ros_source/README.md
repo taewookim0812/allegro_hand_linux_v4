@@ -4,6 +4,10 @@ This repository is the official release for controlling the **Allegro Hand V4** 
 
 Make sure that you are following well with [**Setup** in README.md](../README.md#setup).
 
+## Install ROS1 Noetic
+
+Follow the official [ROS Noetic installation guide](https://wiki.ros.org/noetic/Installation/Ubuntu).
+
 ## Build ROS1 packages
 
 ```bash
@@ -46,6 +50,10 @@ roslaunch allegro_hand_controllers allegro_hand.launch HAND:=right
 ✅ **Successful Launch**
 
 Congratulations on successfully running the Allegro Hand V4! 🎉
+
+<center>
+<img src="../asset/firstrun.gif" width="30%"/>
+</center>
 
 If the command executes correctly, you should see **Allegro Hand status information** in the terminal logs:
 
@@ -194,3 +202,4 @@ When running **more than one Allegro Hand** in ROS, you must **specify the hand 
   - However, the **`robot_description` parameter**, which defines the **kinematic structure** and **joint limits**, is **global**.
     - When launching a **second hand**, the **`robot_description` parameter is overwritten**.
     - At this time, there is **no known method** to create separate **`robot_description` namespaces** for multiple hands. If you have any insights on how to manage **separate `robot_description` parameters** for multiple hands, *please share your suggestions!*
+
