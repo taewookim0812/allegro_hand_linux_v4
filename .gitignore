@@ -2,7 +2,7 @@ devel/
 logs/
 build/
 bin/
-# lib/
+lib/
 msg_gen/
 srv_gen/
 msg/*Action.msg
@@ -231,8 +231,8 @@ cython_debug/
 .vscode/
 
 # libBHand
-!libBHand/
-!libBHand/libBHand_64
 !libBHand/libBHand_64/lib
-!libBHand/libBHand_32
 !libBHand/libBHand_32/lib
+!ros2_source/src/bhand/lib
+!ros2_source/src/bhand/libBHand_64/lib
+!ros2_source/src/bhand/libBHand_32/lib
