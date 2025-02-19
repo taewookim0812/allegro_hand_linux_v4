@@ -27,6 +27,7 @@ source devel/setup.bash
         │   │   ├── allegro_hand.launch
         │   │   └── allegro_viz.launch
         │   ├── package.xml
+        │   ├── CMakeLists.txt
         │   └── src
         ├── allegro_hand_description
         ├── allegro_hand_driver

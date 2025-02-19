@@ -1,19 +1,16 @@
-// Common allegro node code used by any node. Each node that implements an
-// AllegroNode must define the computeDesiredTorque() method.
-//
-// Author: Felix Duvallet <felix.duvallet@epfl.ch>
+// Common allegro node code used by any node. 
+// Each node that implements an AllegroNode must define the computeDesiredTorque() method.
 
 #include "allegro_node.h"
 #include "allegro_hand_driver/AllegroHandDrv.h"
 
 std::string jointNames[DOF_JOINTS] =
-        {
-                "joint_0.0", "joint_1.0", "joint_2.0", "joint_3.0",
-                "joint_4.0", "joint_5.0", "joint_6.0", "joint_7.0",
-                "joint_8.0", "joint_9.0", "joint_10.0", "joint_11.0",
-                "joint_12.0", "joint_13.0", "joint_14.0", "joint_15.0"
-        };
-
+{
+  "joint_0.0", "joint_1.0", "joint_2.0", "joint_3.0",
+  "joint_4.0", "joint_5.0", "joint_6.0", "joint_7.0",
+  "joint_8.0", "joint_9.0", "joint_10.0", "joint_11.0",
+  "joint_12.0", "joint_13.0", "joint_14.0", "joint_15.0"
+};
 
 AllegroNode::AllegroNode(bool sim /* = false */) {
   mutex = new boost::mutex();
@@ -51,22 +48,25 @@ AllegroNode::AllegroNode(bool sim /* = false */) {
   if(!sim) {
     canDevice = new allegro::AllegroHandDrv();
     if (canDevice->init()) {
-        usleep(3000);
-    }
+      usleep(3000);
+      }
     else {
-        delete canDevice;
-        canDevice = 0;
+      delete canDevice;
+      canDevice = 0;
+      }
     }
-  }
 
   // Start ROS time
   tstart = ros::Time::now();
   
-  // Advertise current joint state publisher and subscribe to desired joint
-  // states.
+  // Advertise current joint state publisher and subscribe to desired joint states.
   joint_state_pub = nh.advertise<sensor_msgs::JointState>(JOINT_STATE_TOPIC, 3);
-  joint_cmd_sub = nh.subscribe(DESIRED_STATE_TOPIC, 1, // queue size
-                                &AllegroNode::desiredStateCallback, this);
+  joint_cmd_sub = nh.subscribe(
+    DESIRED_STATE_TOPIC,
+    1, // queue size
+    &AllegroNode::desiredStateCallback,
+    this
+    );
 }
 
 AllegroNode::~AllegroNode() {
@@ -107,7 +107,6 @@ void AllegroNode::updateController() {
 
   tstart = tnow;
 
-
   if (canDevice)
   {
     // try to update joint positions through CAN comm:
@@ -131,11 +130,13 @@ void AllegroNode::updateController() {
         current_position_filtered[i] = (0.6 * current_position_filtered[i]) +
                                        (0.198 * previous_position[i]) +
                                        (0.198 * current_position[i]);
-        current_velocity[i] =
-                (current_position_filtered[i] - previous_position_filtered[i]) / dt;
+
+        current_velocity[i] = (current_position_filtered[i] - previous_position_filtered[i]) / dt;
+
         current_velocity_filtered[i] = (0.6 * current_velocity_filtered[i]) +
                                        (0.198 * previous_velocity[i]) +
                                        (0.198 * current_velocity[i]);
+
         current_velocity[i] = (current_position[i] - previous_position[i]) / dt;
       }
 
@@ -169,7 +170,10 @@ void AllegroNode::timerCallback(const ros::TimerEvent &event) {
 }
 
 ros::Timer AllegroNode::startTimerCallback() {
-  ros::Timer timer = nh.createTimer(ros::Duration(0.001),
-                                    &AllegroNode::timerCallback, this);
+  ros::Timer timer = nh.createTimer(
+    ros::Duration(0.001),
+    &AllegroNode::timerCallback,
+    this
+    );
   return timer;
 }
