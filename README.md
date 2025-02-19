@@ -5,96 +5,172 @@
 
 This repository is the official release for controlling the **Allegro Hand V4**.
 
-There are [ROS1 API](./ros_source/) and [C++ API](./cpp/) for [Allegro Hand V4](https://www.allegrohand.com/ah-v4-main)
+There are [ROS1 API](./ros_source/), [ROS2 API](./ros2_source) and [C++ API](./cpp/) for [Allegro Hand V4](https://www.allegrohand.com/ah-v4-main)
 
 # Setup
 
-In this section, we will introduce how to setup PC setting and PCAN driver which is for connecting Allegro Hand V4 and PC.
+This section provides instructions on setting up your PC and installing the PCAN driver to connect the **Allegro Hand V4** to your system.
 
-1. **Install Ubuntu 20.04**
-  - **Download Ubuntu 20.04 LTS:**
-    - Get the ISO from the [official Ubuntu website](https://ubuntu.com/download/desktop).
-  - **Create a Bootable USB Drive:**
-    - Use tools like [Rufus](https://rufus.ie/) (Windows) or [Etcher](https://www.balena.io/etcher/) (macOS/Linux) to write the ISO to a USB drive.
-  - **Install Ubuntu:**
-    - Boot your PC from the USB drive.
-    - Follow the on-screen instructions to install Ubuntu (select language, keyboard layout, disk setup, and user information).
-    - Reboot your system after installation.
+> [!IMPORTANT]
+> Make sure to choose the correct version for your setup. The **Setup Manual** and **Source Code** differ depending on the project you are working on.
 
-2. **Install the Grasping Library `libBHand`**
+|  | **C++ API** | **ROS1 API** | **ROS2 API** |
+|---|------------|-------------|-------------|
+| **System** | Ubuntu 20.04 | Ubuntu 20.04 | Ubuntu 22.04 |
+| **Source** | [cpp/](./cpp/) | [ros_source/](./ros_source/) | [ros2_source/](./ros2_source/) |
+| **Setup Manual** | 🔵 Type 1 | 🔵 Type 1 | 🟣 Type 2 |
 
-  - Check your system architecture. Run the following command to determine whether you need the 32-bit or 64-bit version: `getconf LONG_BIT`
-  - Go to `libBHand/libBHand_{32|64}` directory and Install `libBHand`
+
+<details>
+<summary><b>🔵 Type 1</b></summary>
+
+## Project Setup of Type 1
+
+### 1. Install Ubuntu 20.04
+
+- **Download & Create Bootable USB**
+   - Get the [Ubuntu 20.04 LTS ISO](https://releases.ubuntu.com/focal/).
+   - Use [Rufus](https://rufus.ie/) (Windows) or [Etcher](https://www.balena.io/etcher/) (macOS/Linux) to create a bootable USB.
+- **Install Ubuntu**
+   - Boot from the USB and follow the installation steps (language, keyboard, disk setup, user info).
+   - Reboot after installation.
+
+
+### 2. `libBHand` Installation
+
+- Check your system architecture:
+  ```bash
+  getconf LONG_BIT
+  ```
+  This will determine whether you need the 32-bit or 64-bit version.
+
+- Navigate to the `libBHand/libBHand_{32|64}` directory and install `libBHand`:
+  ```bash
+  cd libBHand/libBHand_{32|64}
+  sudo make install
+  sudo ldconfig
+  ```
+
+- If you need to **uninstall** `libBHand`, navigate to the `libBHand_{32|64}` directory and run:
+  ```bash
+  sudo make uninstall
+  sudo ldconfig
+  ```
+
+- The library source can also be downloaded from the [Grasping Library for Linux](https://www.allegrohand.com/ah-v4-grasping-library-for-linux).
+  - Click the button to download.
+  - Locate `LibBHand_32.zip` or `LibBHand_64.zip` (found in the `/Allegro Hand V4 | File` folder).
+  - Unzip the source file and install it according to the instructions above.
+
+### 3. Install the PCAN Driver
+
+> Before using the hand, you must install the **PCAN drivers**. These instructions assume you are using a **Peak Systems PCAN-USB adapter**.
+
+- **Install dependencies:**
+  ```bash
+  sudo apt-get install libpopt-dev ros-noetic-libpcan
+  ```
+
+- **Download the latest drivers:**
+  [Peak-System Linux Driver](http://www.peak-system.com/fileadmin/media/linux/index.htm#download)
+
+- **Install the drivers:**
+  ```bash
+  make clean; make NET=NO_NETDEV_SUPPORT
+  sudo make install
+  sudo /sbin/modprobe pcan
+  ```
+
+- **Verify installation:**
+  Run the following command to check if the interface is installed correctly. You should see streaming output.
+  ```bash
+  cat /proc/pcan
+  ```
+
+- **Check for available interfaces:**
+  When the hand is connected, you should see `pcanusb0` or `pcanusbN` (`N` can be any number).
+  ```bash
+  ls -l /dev/pcan*
+  ```
+
+  - If no files are listed, try running the following command from the **downloaded PCAN driver folder**. It manually creates the device files if the system has not done so automatically.
     ```bash
-    cd libBHand/libBHand_{32|64}
-    sudo make install
-    sudo ldconfig
+    sudo ./driver/pcan_make_devices 2
     ```
 
-  - If you need to **Uninstall** `libBHand`, navigate to the `libBHand_{32|64}` directory and run:
-    ```bash
-    sudo make uninstall
-    sudo ldconfig
-    ```
+- **(Optional) CAN Communication Tutorial**
+  - If you are not familiar with PCAN, refer to the [CAN Communication Tutorial](https://www.allegrohand.com/ah-v4-can-communication).
 
-  - The library source can be also downloaded from the [Grasping Library for Linux](https://www.allegrohand.com/ah-v4-grasping-library-for-linux). Click the button to download, and then locate the `LibBHand_32.zip` or `LibBHand_64.zip` file (found in the `/Allegro Hand V4 | File` folder). Unzip the source file and install it according to the instructions above.
+</details>
 
+<details>
+<summary><b>🟣 Type 2</b></summary>
 
-3. **Install the PCAN driver**
-  > Before using the hand, you must install the **PCAN drivers**. These instructions assume you are using a **Peak Systems PCAN-USB adapter**.
+## Project Setup of Type 2
 
-  - **Install dependencies**
+### 1. Install Ubuntu 22.04
 
-      ```bash
-      sudo apt-get install libpopt-dev ros-noetic-libpcan
-      ```
+- **Download & Create Bootable USB**
+   - Get the [Ubuntu 22.04 LTS ISO](https://releases.ubuntu.com/jammy/).
+   - Use [Rufus](https://rufus.ie/) (Windows) or [Etcher](https://www.balena.io/etcher/) (macOS/Linux) to create a bootable USB.
+- **Install Ubuntu**
+   - Boot from the USB and follow the installation steps (language, keyboard, disk setup, user info).
+   - Reboot after installation.
 
-  - **Download the latest drivers**: [Peak-System Linux Driver](http://www.peak-system.com/fileadmin/media/linux/index.htm#download)
+### 2. `libBHand` Installation
 
-  - **Install the drivers**
+- `BHandLib` is located in `/src/bhand/lib/libBHand.so`.
+- By default, the library is compiled for **64-bit** systems. If your system is **32-bit**, replace the `/lib` folder with the appropriate version.
 
-      ```bash
-      make clean; make NET=NO_NETDEV_SUPPORT
-      sudo make install
-      sudo /sbin/modprobe pcan
-      ```
+- Library Structure:
+  ```bash
+  src/
+  └── bhand/
+      ├── include/bhand/
+      ├── lib/
+      │   └── libBHand.so  # Default (64-bit) used when building the source
+      ├── libBHand_32/lib/
+      │   └── libBHand.so  # Replace with this if using a 32-bit system
+      └── libBHand_64/lib/
+          └── libBHand.so  # Replace with this if using a 64-bit system
+  ```
 
-  - **Verify installation**: Run the following command to check if the interface is installed correctly. You should see streaming output.
+### 3. ROS 2 and PCAN Support
 
-      ```bash
-      cat /proc/pcan
-      ```
+- ROS 2 no longer supports **PCAN**. Instead, use `can-utils` for **SocketCAN**:
+  ```bash
+  sudo apt install can-utils
+  ```
 
-  - **Check for available interfaces**: When the hand is connected, you should see `pcanusb0` or `pcanusbN` (`N` can be any number).
-
-      ```bash
-      ls -l /dev/pcan*
-      ```
-
-     - If no files are listed, try running the following command from the **downloaded PCAN driver folder**. It manually creates the device files if the system has not done so automatically.
-       ```bash
-       sudo ./driver/pcan_make_devices 2
-       ```
-
-  - **(Optional) CAN Communication Tutorial**
-     - If you are not familiar with PCAN, please refer to the [CAN Communication Tutorial](https://www.allegrohand.com/ah-v4-can-communication).
+</details>
 
 
 # File Structure
 
+This repository is structured into three main sections:
+- `cpp/`: Contains the standalone C++ API for the Allegro Hand V4.
+- `ros_source/`: Includes the ROS1 package for controlling the Allegro Hand.
+- `ros2_source/`: Includes the ROS2 package for controlling the Allegro Hand.
+
+Each section has its own **README.md** with setup and build instructions.
+
 ```
 .
+├── libBHand
+│   ├── libBHand_64
+│   └── libBHand_32
 ├── cpp
-│   ├── 📃README.md: Instructions for building the C++ library.
+│   ├── 📃 README.md   # Instructions for building the C++ library
 │   └── grasp
 ├── ros_source
-│   ├── 📃README.md: Instructions for building the ROS package.
+│   ├── 📃 README.md   # Instructions for building the ROS1 package
 │   └── src
 │       ├── allegro_hand_controllers
 │       │   ├── launch
 │       │   │   ├── allegro_hand.launch
 │       │   │   └── allegro_viz.launch
 │       │   ├── package.xml
+        │   ├── CMakeLists.txt
 │       │   └── src
 │       ├── allegro_hand_description
 │       ├── allegro_hand_driver
@@ -102,17 +178,29 @@ In this section, we will introduce how to setup PC setting and PCAN driver which
 │       ├── allegro_hand_parameters
 │       ├── allegro_hand_python
 │       └── bhand
-└── 📃README.md: Instructions for setup the Allegro Hand V4
+├── ros2_source
+│   ├── 📃 README.md   # Instructions for building the ROS2 package
+│   └── src
+│       ├── allegro_hand_controllers
+│       ... (Similar to the `ros_source` structure)
+│       └── bhand
+└── 📃 README.md       # Instructions for setting up the Allegro Hand V4
 ```
-
-# ROS1 API
-
-We offer a ROS1 API to control the Allegro Hand V4 using **ROS1 Noetic** on **Ubuntu 20.04**. For more details about the ROS1 API, please refer to 📃[ros_source/README.md](./ros_source/README.md).
-
 
 # C++ API
 
-We’ve provided step-by-step instructions for running the motion demo for the Allegro Hand V4 using the **C++ API**—which operates independently of ROS. For additional details about the C++ API, please see 📃[cpp/README.md](./cpp/README.md).
+Step-by-step instructions are provided for running the motion demo of the **Allegro Hand V4** using the **C++ API** on **Ubuntu 20.04** (independent of ROS).
+For more details, see 📃 [cpp/README.md](./cpp/README.md).
+
+# ROS1 API
+
+The **ROS1 API** allows you to control the **Allegro Hand V4** using **ROS1 Noetic** on **Ubuntu 20.04**.
+For more details, see 📃 [ros_source/README.md](./ros_source/README.md).
+
+# ROS2 API
+
+The **ROS2 API** enables control of the **Allegro Hand V4** using **ROS2 Humble** on **Ubuntu 22.04**.
+For more details, see 📃 [ros2_source/README.md](./ros2_source/README.md).
 
 
 # User Manual
