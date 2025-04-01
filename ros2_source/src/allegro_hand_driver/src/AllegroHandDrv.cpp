@@ -151,26 +151,11 @@ void AllegroHandDrv::resetJointInfoReady()
 
 void AllegroHandDrv::setTorque(double *torque)
 {
-    if (_hand_version == 1.0) {
-        // For Allegro Hand v1.0
-        for (int findex = 0; findex < 4; findex++) {
-            _desired_torque[4 * findex + 0] = torque[4 * findex + 0];
-            _desired_torque[4 * findex + 1] = torque[4 * findex + 1];
-            _desired_torque[4 * findex + 2] = torque[4 * findex + 2];
-            _desired_torque[4 * findex + 3] = torque[4 * findex + 3];
-        }
-    } else if (_hand_version >= 2.0) {
-        // For Allegro Hand v2.0
-        for (int findex = 0; findex < 4; findex++) {
-            _desired_torque[4 * findex + 0] = torque[4 * findex + 0];
-            _desired_torque[4 * findex + 1] = torque[4 * findex + 1];
-            _desired_torque[4 * findex + 2] = torque[4 * findex + 2];
-            _desired_torque[4 * findex + 3] = torque[4 * findex + 3];
-        }
-    } else {
-        RCLCPP_ERROR(rclcpp::get_logger("allegro_hand_drv"),
-                     "CAN: Cannot determine proper finger CAN channels. Check the Allegro Hand version in 'zero.yaml'");
-        return;
+    for (int findex = 0; findex < 4; findex++) {
+        _desired_torque[4 * findex + 0] = torque[4 * findex + 0];
+        _desired_torque[4 * findex + 1] = torque[4 * findex + 1];
+        _desired_torque[4 * findex + 2] = torque[4 * findex + 2];
+        _desired_torque[4 * findex + 3] = torque[4 * findex + 3];
     }
 }
 
@@ -248,15 +233,10 @@ void AllegroHandDrv::_parseMessage(int id, int len, unsigned char* data)
                         "                      internal communication fault: %s", (data[6] & 0x04 ? "ON" : "OFF"));
 
             _hand_version = data[1];
-            if (_hand_version == 4) {
-                _tau_cov_const  = 1200.0;
-                _input_voltage  = 12.0;
-                _pwm_max_global = PWM_LIMIT_GLOBAL_12V;
-            } else {
-                _tau_cov_const  = 800.0;
-                _input_voltage  = 8.0;
-                _pwm_max_global = PWM_LIMIT_GLOBAL_8V;
-            }
+
+            _tau_cov_const  = 1200.0;
+            _input_voltage  = 12.0;
+            _pwm_max_global = PWM_LIMIT_GLOBAL_12V;
 
             _pwm_max[eJOINTNAME_INDEX_0] = min(_pwm_max_global, PWM_LIMIT_ROLL);
             _pwm_max[eJOINTNAME_INDEX_1] = min(_pwm_max_global, PWM_LIMIT_NEAR);

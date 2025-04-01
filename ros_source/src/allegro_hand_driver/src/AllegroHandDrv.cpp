@@ -149,27 +149,11 @@ void AllegroHandDrv::resetJointInfoReady()
 
 void AllegroHandDrv::setTorque(double *torque)
 {
-    if (_hand_version == 1.0) {
-        // for Allegro Hand v1.0
-        for (int findex = 0; findex < 4; findex++) {
-            _desired_torque[4*findex+0] = torque[4*findex+0];
-            _desired_torque[4*findex+1] = torque[4*findex+1];
-            _desired_torque[4*findex+2] = torque[4*findex+2];
-            _desired_torque[4*findex+3] = torque[4*findex+3];
-        }
-    }
-    else if (_hand_version >= 2.0) {
-        // for Allegro Hand v2.0
-        for (int findex = 0; findex < 4; findex++) {
-            _desired_torque[4*findex+0] = torque[4*findex+0];
-            _desired_torque[4*findex+1] = torque[4*findex+1];
-            _desired_torque[4*findex+2] = torque[4*findex+2];
-            _desired_torque[4*findex+3] = torque[4*findex+3];
-        }
-    }
-    else {
-        ROS_ERROR("CAN: Can not determine proper finger CAN channels. Check the Allegro Hand version number in 'zero.yaml'");
-        return;
+    for (int findex = 0; findex < 4; findex++) {
+        _desired_torque[4*findex+0] = torque[4*findex+0];
+        _desired_torque[4*findex+1] = torque[4*findex+1];
+        _desired_torque[4*findex+2] = torque[4*findex+2];
+        _desired_torque[4*findex+3] = torque[4*findex+3];
     }
 }
 
@@ -183,7 +167,7 @@ void AllegroHandDrv::getJointInfo(double *position)
 void AllegroHandDrv::_readDevices()
 {
     int err;
-    int id;    
+    int id;
     int len;
     unsigned char data[8];
 
@@ -230,13 +214,13 @@ void AllegroHandDrv::_parseMessage(int id, int len, unsigned char* data)
     int lIndexBase;
     int i;
 
-    //v4 
-    switch (id) 
+    //v4
+    switch (id)
     {
         case ID_RTR_HAND_INFO:
         {
             // Replaced printf with ROS_INFO and appropriate format specifiers
-            ROS_INFO(">CAN(%p): AllegroHand hardware version: 0x%02x%02x", 
+            ROS_INFO(">CAN(%p): AllegroHand hardware version: 0x%02x%02x",
                      (void*)_can_handle, data[1], data[0]);
             ROS_INFO("                      firmware version: 0x%02x%02x", data[3], data[2]);
             ROS_INFO("                      hardware type: %d(%s)", data[4], (data[4] == 0 ? "right" : "left"));
@@ -247,19 +231,9 @@ void AllegroHandDrv::_parseMessage(int id, int len, unsigned char* data)
             ROS_INFO("                      internal communication fault: %s", (data[6] & 0x04 ? "ON" : "OFF"));
 
             _hand_version = data[1];
-            if (_hand_version==4)
-            {
-                //v4
-                _tau_cov_const = 1200.0;
-                _input_voltage = 12.0;
-                _pwm_max_global = PWM_LIMIT_GLOBAL_12V;
-            } else
-            {
-                //v3
-                _tau_cov_const = 800.0;
-                _input_voltage = 8.0;
-                _pwm_max_global = PWM_LIMIT_GLOBAL_8V;
-            }
+            _tau_cov_const = 1200.0;
+            _input_voltage = 12.0;
+            _pwm_max_global = PWM_LIMIT_GLOBAL_12V;
 
             _pwm_max[eJOINTNAME_INDEX_0] = min(_pwm_max_global, PWM_LIMIT_ROLL);
             _pwm_max[eJOINTNAME_INDEX_1] = min(_pwm_max_global, PWM_LIMIT_NEAR);
@@ -285,7 +259,7 @@ void AllegroHandDrv::_parseMessage(int id, int len, unsigned char* data)
         case ID_RTR_SERIAL:
         {
             // Replaced printf with ROS_INFO
-            ROS_INFO(">CAN(%p): AllegroHand serial number: SAH0%d0 %c%c%c%c%c%c%c%c", 
+            ROS_INFO(">CAN(%p): AllegroHand serial number: SAH0%d0 %c%c%c%c%c%c%c%c",
                      (void*)_can_handle, /*HAND_VERSION*/4,
                      data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
         }

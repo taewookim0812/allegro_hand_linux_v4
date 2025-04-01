@@ -35,24 +35,17 @@ AllegroNode::AllegroNode(const std::string nodeName, bool sim /* = false */)
 
 
   // Get Allegro Hand information from parameter server
-  // This information is found in the Hand-specific "zero.yaml" file from the allegro_hand_description package
-  std::string robot_name, manufacturer, origin, serial, can_id, version;
-  declare_parameter("~hand_info/robot_name", "");
-  get_parameter("~hand_info/robot_name", robot_name);
+  std::string can_id, version;
 
   declare_parameter("~hand_info/which_hand", "");
   get_parameter("~hand_info/which_hand", whichHand);
-  declare_parameter("~hand_info/manufacturer", "");
-  get_parameter("~hand_info/manufacturer", manufacturer);
-  declare_parameter("~hand_info/origin", "");
-  get_parameter("~hand_info/origin", origin);
-  declare_parameter("~hand_info/serial", "");
-  get_parameter("~hand_info/serial", serial);
+
   declare_parameter("~hand_info/version", "");
   get_parameter("~hand_info/version", version);
 
   declare_parameter("~comm/CAN_CH", "can0");
   get_parameter("~comm/CAN_CH", can_id);
+
   // Initialize CAN device
   canDevice = 0;
   if(!sim) {
@@ -172,7 +165,6 @@ void AllegroNode::updateController() {
   }
 }
 
-// Interrupt-based control is not recommended by SimLab. I have not tested it.
 void AllegroNode::timerCallback() {
   updateController();
 }

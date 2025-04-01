@@ -170,7 +170,7 @@ Each section has its own **README.md** with setup and build instructions.
 │       │   │   ├── allegro_hand.launch
 │       │   │   └── allegro_viz.launch
 │       │   ├── package.xml
-        │   ├── CMakeLists.txt
+│       │   ├── CMakeLists.txt
 │       │   └── src
 │       ├── allegro_hand_description
 │       ├── allegro_hand_driver

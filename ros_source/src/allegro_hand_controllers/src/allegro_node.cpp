@@ -33,14 +33,8 @@ AllegroNode::AllegroNode(bool sim /* = false */) {
 
   
   // Get Allegro Hand information from parameter server
-  // This information is found in the Hand-specific "zero.yaml" file from the allegro_hand_description package
-  std::string robot_name, manufacturer, origin, serial;
   double version;
-  ros::param::get("~hand_info/robot_name", robot_name);
   ros::param::get("~hand_info/which_hand", whichHand);
-  ros::param::get("~hand_info/manufacturer", manufacturer);
-  ros::param::get("~hand_info/origin", origin);
-  ros::param::get("~hand_info/serial", serial);
   ros::param::get("~hand_info/version", version);
 
   // Initialize CAN device

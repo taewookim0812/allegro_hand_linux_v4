@@ -98,7 +98,6 @@ roslaunch allegro_hand_controllers allegro_hand.launch HAND:=right
 | Argument         | Values | Description |
 |-----------------|--------|-------------|
 | `NUM`           | `0`, `1`, ... | Hand number (default: `0`). |
-| `ZEROS`         | `/path/to/zeros_file.yaml` | Path to the zero configuration file. |
 | `CONTROLLER`    | `grasp`, `pd`, `velsat`, `torque` | Selects the control mode. |
 | `RESPAWN`       | `true`, `false` | Restart the controller if it crashes. |
 | `KEYBOARD`      | `true`, `false` | Enable/disable keyboard input (default: `true`). |
@@ -157,8 +156,6 @@ This package contains the core control nodes for the Allegro Hand. The `AllegroN
   - **`gains_pd.yaml`** → PD controller gains.
   - **`gains_velSat.yaml`** → Velocity saturation-based control gains.
   - **`initial_position.yaml`** → Default home position of the hand.
-  - **`zero.yaml`** → Joint offset and servo direction settings, including metadata.
-  - **`zero_files/`** → Predefined zero files for different hand configurations.
 
 - **`bhand`**: Contains predefined grasping library files for both **32-bit** and **64-bit** architectures.
   - ⚠ **Default: 64-bit.** If using a **32-bit system**, update the symlink accordingly.
@@ -193,9 +190,9 @@ When running **more than one Allegro Hand** in ROS, you must **specify the hand 
 - **Example: Running Two Hands**
 
   ```bash
-  roslaunch allegro_hand.launch HAND:=right ZEROS:=parameters/zero0.yaml NUM:=0 CAN_DEVICE:=/dev/pcan0 AUTO_CAN:=false
+  roslaunch allegro_hand.launch HAND:=right NUM:=0 CAN_DEVICE:=/dev/pcan0 AUTO_CAN:=false
 
-  roslaunch allegro_hand.launch HAND:=left  ZEROS:=parameters/zero1.yaml NUM:=1 CAN_DEVICE:=/dev/pcan1 AUTO_CAN:=false
+  roslaunch allegro_hand.launch HAND:=left  NUM:=1 CAN_DEVICE:=/dev/pcan1 AUTO_CAN:=false
   ```
 
 - **Known Issues & Limitations**
