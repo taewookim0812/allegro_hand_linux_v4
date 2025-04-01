@@ -35,11 +35,6 @@
 /*
  *  @file AllegroHandDef.h
  *  @brief Allegro Hand constants
- *
- *  Created on:         Nov 15, 2012
- *  Added to Project:   Jan 17, 2013
- *  Author:             Sean Yi, K.C.Chang, Seungsu Kim, & Alex Alspach
- *  Maintained by:      Sean Yi(seanyi@wonikrobotics.com)
  */
 #ifndef __ALLEGROHAND_DEF_H__
 #define __ALLEGROHAND_DEF_H__

@@ -158,7 +158,6 @@ void AllegroNode::updateController() {
   }
 }
 
-// Interrupt-based control is not recommended by SimLab. I have not tested it.
 void AllegroNode::timerCallback(const ros::TimerEvent &event) {
   updateController();
 }

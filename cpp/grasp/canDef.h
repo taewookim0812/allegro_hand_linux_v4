@@ -1,9 +1,5 @@
 /*
  *\brief Constants and enums for CAN communication
- *
- *$Author: Sangyup Yi $
- *$Date: 2012/5/11 23:34:00 $
- *$Revision: 1.0 $
  */ 
 
 #ifndef _CANDEF_H

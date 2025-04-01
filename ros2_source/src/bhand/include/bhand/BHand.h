@@ -43,7 +43,6 @@ enum eHandType
 /**
  * BHand class.
  * @brief Allegro Hand grasping algorithm.
- * @author Jihoon Bae, SimLab
  */
 class BHANDEXPORT BHand
 {

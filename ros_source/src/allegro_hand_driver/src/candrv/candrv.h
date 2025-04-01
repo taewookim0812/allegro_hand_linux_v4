@@ -40,11 +40,6 @@
  *  @brief API for communication over CAN bus
  *  @detailed The API for communicating with the various motor controllers
  *          over the CAN bus interface on the robot hand
- *
- *  Created on:         July 29, 2016
- *  Added to Project: 	July 29, 2016
- *  Author:             Sean Yi
- *  Maintained by:      Sean Yi(seanyi@wonikrobotics.com)
  */
 
 #include "candef.h"

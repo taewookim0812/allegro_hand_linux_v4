@@ -2,10 +2,6 @@
 *\brief API for communication over CAN bus
 *\detailed The API for communicating with the various motor controllers
 *          over the CAN bus interface on the robot hand
-*
-*$Author: Sangyup Yi $
-*$Date: 2012/5/11 23:34:00 $
-*$Revision: 1.0 $
 */
 
 #ifndef _CANDAPI_H

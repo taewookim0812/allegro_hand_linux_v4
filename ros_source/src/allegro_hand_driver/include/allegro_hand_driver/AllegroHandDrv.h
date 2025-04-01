@@ -35,11 +35,6 @@
 /*
  *  @file AllegroHandDrv.h
  *  @brief Allegro Hand Driver
- *
- *  Created on:         July 29, 2016
- *  Added to Project:   July 29, 2016
- *  Author:             Sean Yi
- *  Maintained by:      Sean Yi(seanyi@wonikrobotics.com)
  */
 #ifndef __ALLEGROHAND_DRV_H__
 #define __ALLEGROHAND_DRV_H__

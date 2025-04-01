@@ -35,11 +35,6 @@
 /*
  *  @file pcan.cpp
  *  @brief CAN API implementation to support PEAK CAN interface
- *
- *  Created on:         July 29, 2016
- *  Added to Project:   July 29, 2016
- *  Author:             Sean Yi
- *  Maintained by:      Sean Yi(seanyi@wonikrobotics.com)
  */
 
 /*======================*/
