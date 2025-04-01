@@ -113,6 +113,11 @@ ros2 launch allegro_hand_controllers allegro_hand.launch.py
 | `VISUALIZE`     | `true`, `false` | Launch RViz for visualization. |
 | `JSP_GUI`       | `true`, `false` | Show the `joint_state_publisher` GUI for desired joint angles. |
 
+- To apply the PD controller, launch with the following command:
+  ```bash
+  ros2 launch allegro_hand_controllers allegro_hand.launch.py CONTROLLER:="'pd'"
+  ```
+
 After launching the controller, start the keyboard input by running:
 
 ```bash

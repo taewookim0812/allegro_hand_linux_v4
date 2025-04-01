@@ -122,27 +122,13 @@ void AllegroNodePD::libCmdCallback(const std_msgs::msg::String &msg)
   }
 }
 
-// Called when a desired joint position message is received
-// void AllegroNodePD::setJointCallback(const sensor_msgs::msg::JointState &msg) {
-//   if(!control_hand_)
-//   {
-//     RCLCPP_WARN(this->get_logger(), "Setting control_hand_ to True because of "
-//                                                           "received JointState message");
-//     // TODO complete the function refering to AllegroNodeGrasp::setJointCallback
-//   }
-//   control_hand_ = true;
-// }
-
 // Callback for desired joint state messages.
 void AllegroNodePD::setJointCallback(const sensor_msgs::msg::JointState &msg) {
-  // control_hand_가 false인 경우 (grasp 노드의 동작과 유사하게) 경고 메시지를 출력. JointState 메시지가 핸드를 제어 모드로 강제 전환시키고 있음
   if (!control_hand_) {
     RCLCPP_WARN(this->get_logger(), "Setting control_hand_ to True because of received JointState message");
   }
-  // 공유 변수인 desired_joint_state를 업데이트하기 전에 뮤텍스를 잠그고, 업데이트 후에 해제하여 스레드 안전성을 보장
-  // Lock the mutex to safely update shared data.
+
   mutex->lock();
-  // 수신된 msg.position 벡터가 정확히 DOF_JOINTS 개의 요소를 포함하고 있는지 확인. 만약 그렇지 않으면 오류를 기록
   if (msg.position.size() == DOF_JOINTS) {
     // Update each joint's desired position.
     for (int i = 0; i < DOF_JOINTS; i++) {

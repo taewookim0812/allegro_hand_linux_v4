@@ -57,7 +57,7 @@ def generate_launch_description():
     declare_controller_arg = DeclareLaunchArgument(
         'CONTROLLER',
         default_value="'grasp'",
-        description='Specify which controller to use: grasp, pd, velsat, torque'
+        description='Specify which controller to use: grasp, pd'
     )
 
     def setup_can(context):
@@ -93,8 +93,9 @@ def generate_launch_description():
     controller = LaunchConfiguration('CONTROLLER')
     # Build the executable name for the controller node dynamically using the CONTROLLER arg.
     executable_name = PythonExpression([
-        "'allegro_node_' + ", controller
+    "'allegro_node_' + '", controller, "'"
     ])
+
 
     return LaunchDescription([
         declare_visualize_arg,
