@@ -14,12 +14,19 @@ This section provides instructions on setting up your PC and installing the PCAN
 > [!IMPORTANT]
 > Make sure to choose the correct version for your setup. The **Setup Manual** and **Source Code** differ depending on the project you are working on.
 
+<!--
 |  | **C++ API** | **ROS1 API** | **ROS2 API** |
 |---|------------|-------------|-------------|
 | **System** | Ubuntu 20.04 | Ubuntu 20.04 | Ubuntu 22.04 |
 | **Source** | [cpp/](./cpp/) | [ros_source/](./ros_source/) | [ros2_source/](./ros2_source/) |
 | **Setup Manual** | 🔵 Type 1 | 🔵 Type 1 | 🟣 Type 2 |
+-->
 
+|  | **C++ API** | **ROS1 API** | **ROS2 API** |
+|---|------------|-------------|-------------|
+| **System** | Ubuntu 20.04/22.04 | Ubuntu 20.04 | Ubuntu 22.04 |
+| **Source** | [cpp/grasp_2004/](./cpp/grasp_2004/)/[cpp/grasp_2204/](./cpp/grasp_2004/) | [ros_source/](./ros_source/) | [ros2_source/](./ros2_source/) |
+| **Setup Manual** | 🔵 Type 1/🟣 Type 2 | 🔵 Type 1 | 🟣 Type 2 |
 
 <details>
 <summary><b>🔵 Type 1</b></summary>
@@ -189,7 +196,7 @@ Each section has its own **README.md** with setup and build instructions.
 
 # C++ API
 
-Step-by-step instructions are provided for running the motion demo of the **Allegro Hand V4** using the **C++ API** on **Ubuntu 20.04** (independent of ROS).
+Step-by-step instructions are provided for running the motion demo of the **Allegro Hand V4** using the **C++ API** on **Ubuntu 20.04/22.04** (independent of ROS).
 For more details, see 📃 [cpp/README.md](./cpp/README.md).
 
 # ROS1 API

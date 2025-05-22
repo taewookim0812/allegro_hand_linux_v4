@@ -1,6 +1,6 @@
 /*
  *\brief Constants and enums for CAN communication
- */ 
+ */
 
 #ifndef _CANDEF_H
 #define _CANDEF_H

@@ -226,6 +226,10 @@ void MainLoop()
         int c = Getch();
         switch (c)
         {
+        case 's':
+            PrintInstruction();
+            break;
+
         case 'q':
             if (pBHand) pBHand->SetMotionType(eMotionType_NONE);
             bRun = false;
@@ -448,6 +452,7 @@ void PrintInstruction()
     printf("1: Rock Motion (defined in RockScissorsPaper.cpp)\n");
     printf("2: Scissors Motion (defined in RockScissorsPaper.cpp)\n");
     printf("3: Paper Motion (defined in RockScissorsPaper.cpp)\n");
+    printf("S: Show Keyboard Commands List\n");
     printf("Q: Quit this program\n");
 
     printf("--------------------------------------------------\n\n");
