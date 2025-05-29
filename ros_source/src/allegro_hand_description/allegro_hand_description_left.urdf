@@ -157,6 +157,7 @@
       <geometry>
         <mesh filename="package://allegro_hand_description/meshes/link_3.0_tip.STL"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
       <material name="white">
         <color rgba=".9 .9 .9 1"/>
       </material>
@@ -165,6 +166,7 @@
       <geometry>
         <sphere radius="0.012"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
     </collision>
     <inertial>
       <mass value="0.0168"/>
@@ -295,6 +297,7 @@
       <geometry>
         <mesh filename="package://allegro_hand_description/meshes/link_3.0_tip.STL"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
       <material name="white">
         <color rgba=".9 .9 .9 1"/>
       </material>
@@ -303,6 +306,7 @@
       <geometry>
         <sphere radius="0.012"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
     </collision>
     <inertial>
       <mass value="0.0168"/>
@@ -433,6 +437,7 @@
       <geometry>
         <mesh filename="package://allegro_hand_description/meshes/link_3.0_tip.STL"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
       <material name="white">
         <color rgba=".9 .9 .9 1"/>
       </material>
@@ -441,6 +446,7 @@
       <geometry>
         <sphere radius="0.012"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
     </collision>
     <inertial>
       <mass value="0.0168"/>
@@ -522,7 +528,8 @@
         <mesh filename="package://allegro_hand_description/meshes/link_14.0.STL"/>
       </geometry>
       <material name="black">
-                </material>
+        <color rgba=".2 .2 .2 1"/>
+      </material>
     </visual>
     <collision>
       <geometry>
@@ -579,6 +586,7 @@
       <geometry>
         <mesh filename="package://allegro_hand_description/meshes/link_15.0_tip.STL"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0167" />
       <material name="white">
         <color rgba=".9 .9 .9 1"/>
       </material>
@@ -587,7 +595,7 @@
       <geometry>
         <sphere radius="0.012"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.0167" />
     </collision>
     <inertial>
       <mass value="0.0168"/>

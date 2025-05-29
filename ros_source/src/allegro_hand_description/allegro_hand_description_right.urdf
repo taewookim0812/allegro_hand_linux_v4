@@ -98,7 +98,7 @@
     </inertial>
   </link>
   <joint name="joint_1.0" type="revolute">
-    <limit effort="15" lower="-0.19599999999999998" upper="1.6099999999999999" velocity="7"/>
+    <limit effort="15" lower="-0.196" upper="1.61" velocity="7"/>
     <axis xyz="0 1 0"/>
     <parent link="link_0"/>
     <child link="link_1"/>
@@ -127,7 +127,7 @@
   </link>
   <joint name="joint_2.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="15" lower="-0.17400000000000002" upper="1.7089999999999999" velocity="7"/>
+    <limit effort="15" lower="-0.174" upper="1.709" velocity="7"/>
     <parent link="link_1"/>
     <child link="link_2"/>
     <origin xyz="0 0 0.054"/>
@@ -143,9 +143,9 @@
     </visual>
     <collision>
       <geometry>
-        <box size="0.0196 0.0275 0.026699999999999998"/>
+        <box size="0.0196 0.0275 0.0267"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0.013349999999999999"/>
+      <origin rpy="0 0 0" xyz="0 0 0.01335"/>
     </collision>
     <inertial>
       <mass value="0.0096"/>
@@ -155,7 +155,7 @@
   </link>
   <joint name="joint_3.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="15" lower="-0.227" upper="1.6179999999999999" velocity="7"/>
+    <limit effort="15" lower="-0.227" upper="1.618" velocity="7"/>
     <parent link="link_2"/>
     <child link="link_3"/>
     <origin xyz="0 0 0.0384"/>
@@ -167,6 +167,7 @@
       <geometry>
         <mesh filename="package://allegro_hand_description/meshes/link_3.0_tip.STL"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
       <material name="white">
         <color rgba=".9 .9 .9 1"/>
       </material>
@@ -175,7 +176,7 @@
       <geometry>
         <sphere radius="0.012"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
     </collision>
     <inertial>
       <mass value="0.0168"/>
@@ -186,7 +187,7 @@
   <joint name="joint_3_tip" type="fixed">
     <parent link="link_3"/>
     <child link="link_3_tip"/>
-    <origin rpy="0 0 0" xyz="0 0 0.026699999999999998"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0267"/>
   </joint>
   <!-- [LINK 0, 4, 8] -->
   <link name="link_4">
@@ -237,7 +238,7 @@
     </inertial>
   </link>
   <joint name="joint_5.0" type="revolute">
-    <limit effort="15" lower="-0.19599999999999998" upper="1.6099999999999999" velocity="7"/>
+    <limit effort="15" lower="-0.196" upper="1.61" velocity="7"/>
     <axis xyz="0 1 0"/>
     <parent link="link_4"/>
     <child link="link_5"/>
@@ -282,9 +283,9 @@
     </visual>
     <collision>
       <geometry>
-        <box size="0.0196 0.0275 0.026699999999999998"/>
+        <box size="0.0196 0.0275 0.0267"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0.013349999999999999"/>
+      <origin rpy="0 0 0" xyz="0 0 0.01335"/>
     </collision>
     <inertial>
       <mass value="0.0096"/>
@@ -294,7 +295,7 @@
   </link>
   <joint name="joint_7.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="15" lower="-0.227" upper="1.6179999999999999" velocity="7"/>
+    <limit effort="15" lower="-0.227" upper="1.618" velocity="7"/>
     <parent link="link_6"/>
     <child link="link_7"/>
     <origin xyz="0 0 0.0384"/>
@@ -306,6 +307,7 @@
       <geometry>
         <mesh filename="package://allegro_hand_description/meshes/link_3.0_tip.STL"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
       <material name="white">
         <color rgba=".9 .9 .9 1"/>
       </material>
@@ -314,7 +316,7 @@
       <geometry>
         <sphere radius="0.012"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
     </collision>
     <inertial>
       <mass value="0.0168"/>
@@ -325,7 +327,7 @@
   <joint name="joint_7_tip" type="fixed">
     <parent link="link_7"/>
     <child link="link_7_tip"/>
-    <origin rpy="0 0 0" xyz="0 0 0.026699999999999998"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0267"/>
   </joint>
   <!-- [LINK 0, 4, 8] -->
   <link name="link_8">
@@ -376,7 +378,7 @@
     </inertial>
   </link>
   <joint name="joint_9.0" type="revolute">
-    <limit effort="15" lower="-0.19599999999999998" upper="1.6099999999999999" velocity="7"/>
+    <limit effort="15" lower="-0.196" upper="1.61" velocity="7"/>
     <axis xyz="0 1 0"/>
     <parent link="link_8"/>
     <child link="link_9"/>
@@ -421,9 +423,9 @@
     </visual>
     <collision>
       <geometry>
-        <box size="0.0196 0.0275 0.026699999999999998"/>
+        <box size="0.0196 0.0275 0.0267"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0.013349999999999999"/>
+      <origin rpy="0 0 0" xyz="0 0 0.01335"/>
     </collision>
     <inertial>
       <mass value="0.0096"/>
@@ -433,7 +435,7 @@
   </link>
   <joint name="joint_11.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="15" lower="-0.227" upper="1.6179999999999999" velocity="7"/>
+    <limit effort="15" lower="-0.227" upper="1.618" velocity="7"/>
     <parent link="link_10"/>
     <child link="link_11"/>
     <origin xyz="0 0 0.0384"/>
@@ -445,6 +447,7 @@
       <geometry>
         <mesh filename="package://allegro_hand_description/meshes/link_3.0_tip.STL"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.001" />
       <material name="white">
         <color rgba=".9 .9 .9 1"/>
       </material>
@@ -453,7 +456,7 @@
       <geometry>
         <sphere radius="0.012"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.001"/>
     </collision>
     <inertial>
       <mass value="0.0168"/>
@@ -549,7 +552,7 @@
   </link>
   <joint name="joint_14.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="15" lower="-0.18899999999999997" upper="1.644" velocity="7"/>
+    <limit effort="15" lower="-0.189" upper="1.644" velocity="7"/>
     <parent link="link_13"/>
     <child link="link_14"/>
     <origin xyz="0 0 0.0177"/>
@@ -567,9 +570,9 @@
     </visual>
     <collision>
       <geometry>
-        <box size="0.0196 0.0275 0.042300000000000004"/>
+        <box size="0.0196 0.0275 0.0423"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0.021150000000000002"/>
+      <origin rpy="0 0 0" xyz="0 0 0.02115"/>
     </collision>
     <inertial>
       <mass value="0.0388"/>
@@ -579,7 +582,7 @@
   </link>
   <joint name="joint_15.0" type="revolute">
     <axis xyz="0 1 0"/>
-    <limit effort="15" lower="-0.162" upper="1.7189999999999999" velocity="7"/>
+    <limit effort="15" lower="-0.162" upper="1.719" velocity="7"/>
     <parent link="link_14"/>
     <child link="link_15"/>
     <origin xyz="0 0 0.0514"/>
@@ -591,6 +594,7 @@
       <geometry>
         <mesh filename="package://allegro_hand_description/meshes/link_15.0_tip.STL"/>
       </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.0167" />
       <material name="white">
         <color rgba=".9 .9 .9 1"/>
       </material>
@@ -599,7 +603,7 @@
       <geometry>
         <sphere radius="0.012"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0.0167" />
     </collision>
     <inertial>
       <mass value="0.0168"/>
