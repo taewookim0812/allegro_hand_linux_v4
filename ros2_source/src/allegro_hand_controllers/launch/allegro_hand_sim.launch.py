@@ -55,12 +55,12 @@ def generate_launch_description():
         declare_num_arg,
         include_rviz,
 
-        # Simulated joint publisher
+        # 🟢 REPLACED joint_state_publisher with GUI version
         Node(
-            package='joint_state_publisher',
-            executable='joint_state_publisher',
+            package='joint_state_publisher_gui',
+            executable='joint_state_publisher_gui',
             output='screen',
-            name='joint_state_publisher'
+            name='joint_state_publisher_gui'
         ),
 
         # Publishes robot state from URDF (Xacro)
